@@ -13,7 +13,7 @@ def generate_list(word_list, extra_count=3):
 
 def follow_instructions(instructions: list[str]) -> list[int]:
     visited = []
-     def follow(i: int) -> list[int]:
+    def follow(i: int) -> list[int]:
         #base case: stop if the index is outside the list
         if i < 0 or i >= len(instructions):
             return visited
