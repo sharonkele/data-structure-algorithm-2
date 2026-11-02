@@ -68,8 +68,7 @@ def find_endpoints(walkable):
     openings = list(dict.fromkeys(openings))
 
     if len(openings) != 2:
-        raise ValueError(f"Expected 2 maze openings, found {len(openings)}."
-        "Check the maze image or set start and end manually")
+        raise ValueError(f"Expected to find 2 maze openings, found {len(openings)}")
     return openings[0], openings[1]
 
 
