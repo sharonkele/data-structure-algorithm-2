@@ -218,7 +218,7 @@ def main():
             filename = "maze_las_vegas.png"
         elif choice == "2":
             print("\nRunning Backtracking algorithm...")
-            path, visited, moves = backtracking(walkable, start, end)
+            path, visited = backtracking(walkable, start, end)
             filename = "maze_backtracking.png"
         else:
             print("Invalid choice. Please enter 1 or 2")
