@@ -56,7 +56,7 @@ def show_mst_step(Graph, mst, pos, candidate, accepted, step):
         decision = "Rejected, Cycle created"
     plt.title(f"MST Step {step}: {decision}")
     plt.axis("off")
-    plt.tight_layout()
+    # plt.tight_layout() 
 
     # Pause to allow the user to see each step
     plt.show(block=False)
@@ -132,7 +132,7 @@ def display_graph(G, pos, title, edge_color="black"):
     nx.draw_networkx_edge_labels(G,pos, edge_labels=nx.get_edge_attributes(G, "weight"))
     plt.title(title)
     plt.axis("off")
-    plt.tight_layout()
+    # plt.tight_layout() commenting out as it seems to create an incorrect mst
     plt.show()
 
 
