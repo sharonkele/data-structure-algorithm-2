@@ -75,15 +75,15 @@ def find_endpoints(walkable):
 #Backtracking Algorithm
 
 def backtracking(walkable, start, end):
-    h,w = walkable.shape
-    visited = np.zeros((h,w), dtype=bool)
+    h, w = walkable.shape
+    visited = np.zeros((h, w), dtype=bool)
     #Stack represents the current path
     stack = [start]
     visited[start] = True
     while stack:
-        y,x = stack[-1]
+        y, x = stack[-1]
         #check whether the exit has been reached
-        if (y,x) == end:
+        if (y, x) == end:
             return stack.copy(), visited
         moved = False
 
@@ -92,7 +92,7 @@ def backtracking(walkable, start, end):
             ny = y + dy
             nx = x + dx
 
-            if ( 0<= ny < h and 0 <= nx < w and walkable[ny, nx] and not visited[ny, nx]):
+            if ( 0 <= ny < h and 0 <= nx < w and walkable[ny, nx] and not visited[ny, nx]):
                 visited[ny, nx] = True
                 stack.append((ny, nx))
                 moved = True
@@ -102,8 +102,8 @@ def backtracking(walkable, start, end):
         if not moved:
             stack.pop()
         
-        #No solution found
-        return None, visited
+    #No solution found
+    return None, visited
 
 
 #Las Vegas Algorithm
@@ -151,17 +151,17 @@ def las_vegas(walkable, start, end, max_steps=200):
 
 def save_visualisation(original, visited, path, start, end, filename):
     if original.ndim == 2:
-        result = np.stack([original] * 3, axis= -1)
+        result = np.stack([original] * 3, axis=-1)
     else:
         result = original[:, :, :3].copy()
     #colour all visited squares red
-    for y,x in zip(*np.where(visited)):
+    for y, x in zip(*np.where(visited)):
         y1 = y * CELL_SIZE
         x1 = x * CELL_SIZE
 
         result[y1:y1 + CELL_SIZE, x1:x1 + CELL_SIZE] = [1, 0, 0]
-    #colour the successful solution path yellow
 
+    #colour the successful solution path yellow
     if path is not None:
         for y, x in path:
             y1 = y * CELL_SIZE
@@ -171,11 +171,12 @@ def save_visualisation(original, visited, path, start, end, filename):
 
     #mark entrance green
     sy, sx = start
-    result[sy * CELL_SIZE:(sy + 1) * CELL_SIZE, sx * CELL_SIZE:(sx + 1) * CELL_SIZE,] = [0, 1, 0]
-
+    result[sy * CELL_SIZE:(sy + 1) * CELL_SIZE, sx * CELL_SIZE:(sx + 1) * CELL_SIZE] = [0, 1, 0]
+  
     #mark exit blue
-    ey, ex = start
-    result[ey * CELL_SIZE:(ey + 1) * CELL_SIZE, ex * CELL_SIZE:(ex + 1) * CELL_SIZE,] = [0, 0, 1]
+    ey, ex = end
+    result[ey * CELL_SIZE:(ey + 1) * CELL_SIZE, ex * CELL_SIZE:(ex + 1) * CELL_SIZE] = [0, 0, 1]
+
 
     #Display result
     plt.figure(figsize=(9,9))
