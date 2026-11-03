@@ -161,14 +161,6 @@ def save_visualisation(original, visited, path, start, end, filename):
 
         result[y1:y1 + CELL_SIZE, x1:x1 + CELL_SIZE] = [1, 0, 0]
 
-    #colour the successful solution path yellow
-    if path is not None:
-        for y, x in path:
-            y1 = y * CELL_SIZE
-            x1 = x * CELL_SIZE
-
-            result[y1:y1 + CELL_SIZE, x1:x1 + CELL_SIZE] = [1, 0, 0]
-
     #mark entrance green
     sy, sx = start
     result[sy * CELL_SIZE:(sy + 1) * CELL_SIZE, sx * CELL_SIZE:(sx + 1) * CELL_SIZE] = [0, 1, 0]
